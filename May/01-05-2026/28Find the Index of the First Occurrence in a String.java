@@ -34,3 +34,4 @@ class Solution {
         return -1;
     }
 }
+//TRIED TO OPTIMIZE THE SOLUTION IN MORE SIMPLE WAY
