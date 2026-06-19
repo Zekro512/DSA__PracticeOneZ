@@ -1,0 +1,258 @@
+1️⃣ Customer → Orders
+Your Answer:
+One-to-Many because one customer can give one order or many different orders.
+
+Evaluation: ⭐ 10/10
+Absolutely correct.
+
+Why?
+Can one customer place many orders?
+
+YES
+
+
+Pranav
+   ↓
+Order1
+Order2
+Order3
+Can one order belong to many customers?
+
+NO
+
+An order belongs to only one customer.
+
+Therefore:
+
+
+Customer (1)
+      ↓
+      ↓
+Orders (Many)
+Relationship:
+
+One-to-Many (1:N)
+Real Example
+Amazon:
+
+
+Pranav
+ ↓
+Order #101
+Order #205
+Order #307
+2️⃣ Order → Books
+Your Answer:
+Many-to-Many but could also be One-to-Many.
+
+Evaluation: ⭐ 8.5/10
+You were very close.
+
+This question is tricky.
+
+Think carefully:
+Can one order contain many books?
+YES.
+
+
+Order 5001
+ ↓
+DBMS Book
+Java Book
+OS Book
+Can one book appear in many orders?
+YES.
+
+
+DBMS Book
+ ↓
+Order1
+Order2
+Order3
+Order500
+Therefore:
+
+
+Orders
+    ↕
+    ↕
+Books
+Many-to-Many (M:N)
+How do databases implement this?
+They create a junction table:
+
+OrderDetails
+OrderID	BookID	Quantity
+5001	1	1
+5001	2	2
+
+This table is extremely important.
+
+You'll see this pattern everywhere.
+
+Interview Trap
+Interviewer:
+
+One order has many books, so is it One-to-Many?
+
+Many students say:
+
+"Yes."
+
+But they forget:
+
+One book can also appear in many orders.
+
+So the actual relationship is:
+
+Many-to-Many
+3️⃣ Book → Author
+Your Answer:
+Many-to-Many because books can be collaborations and one author can write many books.
+
+Evaluation: ⭐ 10/10
+Excellent thinking.
+
+You considered multiple business cases.
+
+That's what senior engineers do.
+
+Case 1
+One author:
+
+
+Robert Martin
+ ↓
+Clean Code
+ ↓
+Clean Architecture
+One-to-Many.
+
+Case 2
+Multiple authors:
+
+
+Book
+ ↓
+Author1
+Author2
+Author3
+Many-to-Many.
+
+Real Industry Design
+Databases usually assume:
+
+Many-to-Many
+because it handles both cases.
+
+Solution
+Authors Table
+AuthorID	Name
+
+Books Table
+BookID	Name
+
+BookAuthors Table
+BookID	AuthorID
+
+Again:
+
+A junction table.
+
+Pattern Alert 🚨
+Whenever you hear:
+
+"Many A can have many B"
+
+your brain should immediately think:
+
+Junction Table
+or
+
+Bridge Table
+4️⃣ Customer → Payment Methods
+Your Answer:
+One-to-Many because customer can pay with cash, card, UPI.
+
+Evaluation: ⭐ 8/10
+This depends on business requirements.
+
+You assumed:
+
+Customer stores payment methods.
+Example:
+
+
+Pranav
+ ↓
+UPI
+ ↓
+Debit Card
+ ↓
+Credit Card
+This is:
+
+One-to-Many
+Correct.
+
+But another design exists
+Can multiple customers use the same payment method type?
+
+
+UPI
+YES.
+
+Everyone uses UPI.
+
+Then:
+
+
+Customer
+    ↕
+PaymentMethodType
+Many-to-Many.
+
+Even more realistic:
+PaymentMethod
+PaymentMethodID	CustomerID	Type
+1	101	UPI
+2	101	Credit Card
+3	101	Debit Card
+
+Then:
+
+
+Customer
+      ↓
+PaymentMethods
+One-to-Many.
+
+Your assumption was completely reasonable.
+
+🏆 Final Score
+Question	Score
+Customer → Orders	⭐10/10
+Order → Books	⭐8.5/10
+Book → Author	⭐10/10
+Customer → Payment Methods	⭐8/10
+
+Overall: ⭐ 9.1/10
+This is genuinely good.
+
+Most beginners struggle with:
+
+One-to-Many
+
+Many-to-Many
+
+Thinking about business requirements
+
+You naturally considered:
+
+Collaborations
+
+Multiple payment methods
+
+Different business scenarios
+
+That's a good sign for database design.
