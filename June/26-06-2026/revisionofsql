@@ -1,0 +1,440 @@
+1) age INT
+name varchar , salary decimal, dob DATE
+2) company store int for phone number it will give validation probel then there are country code for every country which start form + so it cannnot be stored in int 
+3) customer id = int 
+varchar = names can be varried form and can be change no limited value insertion so varchaR IS GOOD
+varchar = email also have numbers and charcter and has limited lines in which Char can also be used but if we change email and it length will increase or decrease so it will have to change manually as well
+varchar = phone number are uniques and are identifiers so varchar is better it also add symbol as well
+varchar = address can be a bit  length so we can use text as well but not enough length so varchar can handle it
+Date = date will be used in registrartion data as it stores data format data
+int/decimal  // loayalty point means extra bonus point or someting 
+mini challleneg
+price should be decimal as float stores more than 2 deci place number which becomes messy and not valid
+phone should be varchar They are identifiers., and +81 cannot be stored in int
+there is a DATE data type which specifies date so varchar is a big bad choice here
+description can be bigger than 100 charcters so TExt must be used here 
+stock = should be int as there is no decmal value needed in stock \
+
+
+Pranav, this is the best performance you've had so far. I can actually see your thinking changing.
+
+Earlier, your reasoning was:
+
+"This data type looks correct."
+
+Now it's becoming:
+
+"What does this data represent? Will I calculate it? Can it change? Is it an identifier?"
+
+That is exactly how database engineers think.
+
+Let's review it like an interviewer.
+
+🟢 1. Choose the Best Data Type
+Age → INT
+Your Answer
+
+INT
+
+⭐ Score: 10/10
+
+Correct.
+
+Reason:
+
+Whole numbers only
+Mathematical operations possible
+Efficient storage
+Name → VARCHAR
+⭐ Score: 10/10
+
+Correct.
+
+Names have variable lengths.
+
+Example:
+
+Raj
+
+vs
+
+Christopher Alexander
+
+VARCHAR stores only what is needed.
+
+Salary → DECIMAL
+⭐ Score: 10/10
+
+Excellent.
+
+This is one of the most common interview questions.
+
+Never use FLOAT for money.
+
+DOB → DATE
+⭐ Score: 10/10
+
+Perfect.
+
+🟢 2. Phone Number Stored as INT
+
+Your answer:
+
+Country codes start with + and cannot be stored.
+
+⭐ Score: 9/10
+
+Excellent.
+
+But there are even more reasons.
+
+Problem 1
+
+Leading zeros.
+
+Example:
+
+0123456789
+
+Stored as INT:
+
+123456789
+
+Oops.
+
+Leading zero disappeared.
+
+Problem 2
+
+Country code
+
++91
+
+Cannot be stored.
+
+Problem 3
+
+No calculations
+
+Nobody does:
+
+Phone1 + Phone2
+
+Phone numbers are identifiers.
+
+Not numbers.
+
+🎯 Interview Gold Line
+
+Although phone numbers contain digits, they represent identifiers rather than numeric values, so VARCHAR is the appropriate data type.
+
+That sentence impresses interviewers.
+
+🟢 3. Customer Table
+
+Let's review each field.
+
+CustomerID
+
+You wrote:
+
+INT
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+Name
+
+VARCHAR
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+Email
+
+You wrote:
+
+VARCHAR because length varies.
+
+⭐⭐⭐⭐⭐
+
+Excellent reasoning.
+
+One small correction.
+
+You said:
+
+CHAR could also be used.
+
+Technically yes, but in practice:
+
+Almost never.
+
+Why?
+
+Emails vary a lot:
+
+a@gmail.com
+
+vs
+
+pranav.dixit2026@outlook.in
+
+CHAR would waste a lot of storage.
+
+Professionals almost always use:
+
+VARCHAR(255)
+Phone
+
+VARCHAR
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+Address
+
+You wrote:
+
+VARCHAR or TEXT.
+
+⭐⭐⭐⭐⭐
+
+Excellent.
+
+Now you're thinking like an engineer.
+
+Usually:
+
+If address is:
+
+House No.
+Street
+City
+
+VARCHAR is enough.
+
+If:
+
+Full postal address
+
+Apartment
+
+Landmark
+
+Multiple lines
+
+TEXT becomes useful.
+
+Registration Date
+
+DATE
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+Loyalty Points
+
+You wrote:
+
+INT or DECIMAL
+
+⭐⭐⭐⭐☆
+
+Almost correct.
+
+Think:
+
+Can I have:
+
+15.7 loyalty points?
+
+Usually:
+
+No.
+
+They're whole numbers.
+
+Use:
+
+INT
+🟢 Mini Challenge
+
+Let's evaluate.
+
+Price
+
+You wrote:
+
+Should be DECIMAL.
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+Phone
+
+VARCHAR
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+BirthDate
+
+DATE
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+Description
+
+TEXT
+
+⭐⭐⭐⭐⭐
+
+Excellent.
+
+Stock
+
+INT
+
+⭐⭐⭐⭐⭐
+
+Perfect.
+
+🎯 Overall Score
+Question	Score
+Easy	⭐10/10
+Medium	⭐9/10
+Customer Table	⭐9.5/10
+Mini Challenge	⭐10/10
+
+Overall:
+
+⭐⭐⭐⭐⭐ 9.6 / 10
+
+This is your highest score so far.
+
+🧠 One Small Habit I Want You to Build
+
+Whenever someone asks:
+
+Which data type should I use?
+
+Don't answer immediately.
+
+Ask these five questions in your head.
+
+Question 1
+
+What does this value represent?
+
+Money?
+
+Text?
+
+Date?
+
+Count?
+
+Identifier?
+
+Question 2
+
+Will I perform mathematical calculations?
+
+YES
+
+↓
+
+Numeric
+
+NO
+
+↓
+
+Maybe VARCHAR
+
+Question 3
+
+Can the length change?
+
+YES
+
+↓
+
+VARCHAR
+
+NO
+
+↓
+
+CHAR
+
+Question 4
+
+Does the database already have a dedicated type?
+
+DATE
+
+BOOLEAN
+
+TIMESTAMP
+
+Use those instead of VARCHAR.
+
+Question 5
+
+How much storage do I actually need?
+
+Professionals never choose:
+
+VARCHAR(5000)
+
+just because.
+
+Storage matters.
+
+🎯 A Small Correction About FLOAT
+
+You wrote:
+
+FLOAT stores more than 2 decimal places.
+
+Almost.
+
+The real issue isn't the number of decimal places.
+
+It's that FLOAT stores values approximately, while DECIMAL stores them exactly.
+
+For example:
+
+FLOAT
+
+0.1 + 0.2
+
+may become
+
+0.30000000000000004
+
+because of how floating-point numbers are represented in binary.
+
+DECIMAL stores exact decimal values, which is why it's used for money.
+
+This distinction is important in interviews.
+
+🏆 Your Progress So Far
+Topic	Understanding
+Database	⭐⭐⭐⭐⭐
+DBMS	⭐⭐⭐⭐☆
+RDBMS	⭐⭐⭐⭐⭐
+Tables & Schema	⭐⭐⭐⭐☆
+Data Types	⭐⭐⭐⭐⭐
+
+You're no longer just learning syntax—you've started developing database intuition.
