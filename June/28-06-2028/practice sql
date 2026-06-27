@@ -1,0 +1,272 @@
+1. 🔍 WHAT IS DDL?
+Real-World Analogy First
+
+Imagine you're constructing a new apartment building.
+
+Before anyone can live there, you must:
+
+Buy land
+Draw the blueprint
+Build rooms
+Add or remove rooms if needed
+Demolish the building if necessary
+
+DDL is exactly that.
+
+It is not about putting furniture inside the rooms (data).
+
+It is about creating and modifying the building itself (database structure).
+
+Technical Definition
+
+DDL stands for Data Definition Language.
+
+It consists of SQL commands used to define and modify the structure of a database.
+
+These commands work on the schema, not on the actual data.
+
+🧠 Important Difference
+
+Think of our bookstore.
+
+Structure
+Books Table
+
+BookID
+BookName
+Price
+Stock
+
+This is the schema.
+
+Actual Data
+101
+DBMS
+499
+20
+
+This is data.
+
+DDL changes the first one.
+
+Not the second.
+
+2. 🧠 WHY WAS DDL INTRODUCED?
+
+Imagine if SQL had no DDL.
+
+How would you tell the DBMS:
+
+Create a Books table.
+Add a new column.
+Remove a table.
+Rename a column.
+
+You couldn't.
+
+Every application needs a way to define its database structure.
+
+DDL provides that.
+
+Example
+
+Your manager says:
+
+We are launching an Authors feature.
+
+Without DDL:
+
+Impossible.
+
+With DDL:
+
+CREATE TABLE Authors (...);
+
+Done.
+
+3. 🏗️ HOW DOES IT WORK INTERNALLY?
+
+Suppose we execute:
+
+CREATE TABLE Books (
+    BookID INT,
+    BookName VARCHAR(255),
+    Price DECIMAL(10,2)
+);
+
+Does MySQL immediately store any books?
+
+❌ No.
+
+Instead, it updates its system catalog (metadata).
+
+Internally it records something like:
+
+Table: Books
+
+Column:
+BookID
+Type: INT
+
+Column:
+BookName
+Type: VARCHAR(255)
+
+Column:
+Price
+Type: DECIMAL(10,2)
+
+No rows exist yet.
+
+Only the blueprint exists.
+
+This is why DDL affects the schema, not the data.
+
+4. 💻 DDL COMMANDS
+
+There are five commands you must master.
+
+A. CREATE DATABASE
+
+Creates a new database.
+
+CREATE DATABASE OnlineBookStore;
+
+To use it:
+
+USE OnlineBookStore;
+
+Think of this as:
+
+"From now on, work inside this database."
+
+B. CREATE TABLE
+
+Creates a new table.
+
+CREATE TABLE Books (
+
+    BookID INT,
+
+    BookName VARCHAR(255),
+
+    Price DECIMAL(10,2),
+
+    Stock INT
+
+);
+
+Now the table exists.
+
+Rows?
+
+None yet.
+
+C. ALTER TABLE
+
+Used when business requirements change.
+
+Suppose your manager says:
+
+We also need Publisher.
+
+Instead of recreating the table:
+
+ALTER TABLE Books
+
+ADD Publisher VARCHAR(100);
+
+Now:
+
+Before
+
+| BookID | BookName | Price |
+
+After
+
+| BookID | BookName | Price | Publisher |
+
+Another example:
+
+Rename a column.
+
+ALTER TABLE Books
+
+RENAME COLUMN Price TO BookPrice;
+
+Another example:
+
+Change a data type.
+
+ALTER TABLE Books
+
+MODIFY Price DECIMAL(12,2);
+D. TRUNCATE TABLE
+
+Deletes all rows.
+
+Keeps:
+
+Table
+Columns
+Schema
+
+Removes:
+
+All data.
+
+TRUNCATE TABLE Books;
+
+Imagine:
+
+Books table
+
+↓
+
+All books removed
+
+↓
+
+Table still exists.
+
+E. DROP TABLE
+
+Deletes everything.
+
+DROP TABLE Books;
+
+Gone forever.
+
+Table
+
+Rows
+
+Columns
+
+Schema
+
+Everything removed.
+
+🚨 Think Carefully
+
+Suppose:
+
+DROP TABLE Customers;
+
+Question:
+
+What happens?
+
+Exactly.
+
+Entire table disappears.
+
+This is why DROP is dangerous.
+
+5. 📍 WHERE AND WHEN TO USE EACH COMMAND?
+Command	Use When
+CREATE DATABASE	Starting a new project
+CREATE TABLE	Creating a new entity
+ALTER TABLE	Business requirements change
+TRUNCATE TABLE	Remove all records but keep structure
+DROP TABLE	Remove structure completely
