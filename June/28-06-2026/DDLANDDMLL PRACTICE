@@ -1,0 +1,373 @@
+1. 🔍 WHAT IS DML?
+Real-World Analogy
+
+Imagine you've built a brand-new bookstore.
+
+You have:
+
+✅ Shelves
+
+✅ Counters
+
+✅ Cashier
+
+✅ Storage
+
+Everything is ready.
+
+But...
+
+The bookstore is empty.
+
+No books.
+
+No customers.
+
+No orders.
+
+DDL built the store.
+
+DML fills the store with information.
+
+Technical Definition
+
+DML stands for Data Manipulation Language.
+
+It is used to manipulate the data inside tables, not the structure.
+
+Remember:
+
+DDL	DML
+Changes structure	Changes data
+CREATE TABLE	INSERT
+ALTER TABLE	UPDATE
+DROP TABLE	DELETE
+Works on Schema	Works on Rows
+🧠 The Four CRUD Operations
+
+Every software application performs only these four operations on data.
+
+CRUD	SQL Command
+Create	INSERT
+Read	SELECT
+Update	UPDATE
+Delete	DELETE
+
+Almost every app you use is doing these four things.
+
+2. 🧠 WHY WAS DML INTRODUCED?
+
+Imagine you created this table:
+
+CREATE TABLE Books(
+    BookID INT,
+    BookName VARCHAR(100),
+    Price DECIMAL(10,2)
+);
+
+Looks great.
+
+But...
+
+How do you actually put books into it?
+
+Without DML, your table would always remain empty.
+
+DML was introduced so applications can interact with stored data.
+
+Real Example
+
+Instagram
+
+When you create an account:
+
+INSERT
+
+When you open Instagram:
+
+SELECT
+
+When you change your username:
+
+UPDATE
+
+When you delete your account:
+
+DELETE
+
+Every application follows CRUD.
+
+3. 🏗️ HOW DOES IT WORK INTERNALLY?
+
+Let's create our Books table.
+
+Initially:
+
+BookID	BookName	Price
+
+No rows.
+
+Suppose we execute:
+
+INSERT INTO Books
+VALUES(101,'DBMS',499.99);
+
+Internally MySQL:
+
+Step 1
+
+Checks:
+
+Does Books table exist?
+
+✅ Yes
+
+Step 2
+
+Checks:
+
+BookID is INT?
+
+✅
+
+BookName is VARCHAR?
+
+✅
+
+Price is DECIMAL?
+
+✅
+
+Step 3
+
+Stores row on disk.
+
+Now table becomes:
+
+BookID	BookName	Price
+101	DBMS	499.99
+
+Suppose:
+
+SELECT * FROM Books;
+
+Internally:
+
+Reads rows
+Formats results
+Sends them back
+
+Suppose:
+
+UPDATE Books
+SET Price=599
+WHERE BookID=101;
+
+Internally:
+
+Finds BookID 101
+
+↓
+
+Changes Price
+
+↓
+
+Writes updated row
+
+Suppose:
+
+DELETE FROM Books
+WHERE BookID=101;
+
+MySQL:
+
+Find row
+
+↓
+
+Remove row
+
+↓
+
+Table becomes empty again.
+
+4. 💻 HANDS-ON EXAMPLE
+
+Let's build our bookstore.
+
+Books Table
+CREATE TABLE Books(
+
+BookID INT,
+
+BookName VARCHAR(100),
+
+Price DECIMAL(10,2)
+
+);
+INSERT
+
+Add books.
+
+INSERT INTO Books
+
+VALUES
+
+(101,'DBMS',499.99);
+
+Insert another.
+
+INSERT INTO Books
+
+VALUES
+
+(102,'Java',599.99);
+
+Table becomes:
+
+BookID	BookName	Price
+101	DBMS	499.99
+102	Java	599.99
+SELECT
+
+Read data.
+
+SELECT * FROM Books;
+
+Output:
+
+BookID	BookName	Price
+101	DBMS	499.99
+102	Java	599.99
+UPDATE
+
+Book goes on sale.
+
+UPDATE Books
+
+SET Price=399.99
+
+WHERE BookID=101;
+
+Now:
+
+BookID	BookName	Price
+101	DBMS	399.99
+DELETE
+
+Book discontinued.
+
+DELETE FROM Books
+
+WHERE BookID=102;
+
+Java disappears.
+
+5. 📍 WHERE AND WHEN TO USE EACH?
+INSERT
+
+New customer registers.
+
+New book added.
+
+New order created.
+
+SELECT
+
+Customer opens app.
+
+Searches products.
+
+Views profile.
+
+UPDATE
+
+Customer changes address.
+
+Book price changes.
+
+Stock changes.
+
+DELETE
+
+Delete review.
+
+Cancel product.
+
+Remove account.
+
+6. ⚡ OPTIMIZATION & BEST PRACTICES
+🚨 Mistake #1
+
+Forget WHERE.
+
+UPDATE Books
+
+SET Price=100;
+
+What happens?
+
+Every book becomes ₹100.
+
+This has happened in real companies.
+
+Correct:
+
+UPDATE Books
+
+SET Price=100
+
+WHERE BookID=101;
+🚨 Mistake #2
+
+Delete everything.
+
+DELETE FROM Books;
+
+No WHERE.
+
+Every row gone.
+
+Correct:
+
+DELETE FROM Books
+
+WHERE BookID=101;
+🚨 Mistake #3
+
+Wrong INSERT order.
+
+Suppose table:
+
+BookID
+
+BookName
+
+Price
+
+Wrong:
+
+INSERT INTO Books
+
+VALUES
+
+('DBMS',499,101);
+
+Types won't match.
+
+Senior Engineer Habit
+
+Before UPDATE or DELETE:
+
+Always run:
+
+SELECT *
+FROM Books
+WHERE BookID=101;
+
+Confirm the correct row.
+
+Then execute UPDATE or DELETE.
+
+Professionals do this constantly.
