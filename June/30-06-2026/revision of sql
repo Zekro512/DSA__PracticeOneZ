@@ -1,0 +1,257 @@
+Books Table
+CREATE TABLE Books(
+
+BookID INT,
+
+BookName VARCHAR(100),
+
+Price DECIMAL(10,2)
+
+);
+INSERT
+
+Add books.
+
+INSERT INTO Books
+
+VALUES
+
+(101,'DBMS',499.99);
+
+Insert another.
+
+INSERT INTO Books
+
+VALUES
+
+(102,'Java',599.99);
+
+Table becomes:
+
+BookID	BookName	Price
+101	DBMS	499.99
+102	Java	599.99
+SELECT
+
+Read data.
+
+SELECT * FROM Books;
+
+Output:
+
+BookID	BookName	Price
+101	DBMS	499.99
+102	Java	599.99
+UPDATE
+
+Book goes on sale.
+
+UPDATE Books
+
+SET Price=399.99
+
+WHERE BookID=101;
+
+Now:
+
+BookID	BookName	Price
+101	DBMS	399.99
+DELETE
+
+Book discontinued.
+
+DELETE FROM Books
+
+WHERE BookID=102;
+
+Java disappears.
+
+5. 📍 WHERE AND WHEN TO USE EACH?
+INSERT
+
+New customer registers.
+
+New book added.
+
+New order created.
+
+SELECT
+
+Customer opens app.
+
+Searches products.
+
+Views profile.
+
+UPDATE
+
+Customer changes address.
+
+Book price changes.
+
+Stock changes.
+
+DELETE
+
+Delete review.
+
+Cancel product.
+
+Remove account.
+
+6. ⚡ OPTIMIZATION & BEST PRACTICES
+🚨 Mistake #1
+
+Forget WHERE.
+
+UPDATE Books
+
+SET Price=100;
+
+What happens?
+
+Every book becomes ₹100.
+
+This has happened in real companies.
+
+Correct:
+
+UPDATE Books
+
+SET Price=100
+
+WHERE BookID=101;
+🚨 Mistake #2
+
+Delete everything.
+
+DELETE FROM Books;
+
+No WHERE.
+
+Every row gone.
+
+Correct:
+
+DELETE FROM Books
+
+WHERE BookID=101;
+🚨 Mistake #3
+
+Wrong INSERT order.
+
+Suppose table:
+
+BookID
+
+BookName
+
+Price
+
+Wrong:
+
+INSERT INTO Books
+
+VALUES
+
+('DBMS',499,101);
+
+Types won't match.
+
+Senior Engineer Habit
+
+Before UPDATE or DELETE:
+
+Always run:
+
+SELECT *
+FROM Books
+WHERE BookID=101;
+
+Confirm the correct row.
+
+Then execute UPDATE or DELETE.
+
+Professionals do this constantly.
+
+7. 🎯 INTERVIEW ANGLE
+Common Question
+
+Difference between DDL and DML?
+
+Strong answer:
+
+DDL defines the database structure, while DML manipulates the data stored within that structure.
+
+🎯 Trap Question
+
+Interviewer:
+
+DELETE FROM Books;
+
+vs
+
+TRUNCATE TABLE Books;
+
+Difference?
+
+We'll fully compare them next topic.
+
+Interview Favorite
+
+Why is WHERE important?
+
+Excellent answer:
+
+WHERE limits the rows affected by UPDATE or DELETE. Without it, all rows in the table may be modified or deleted.
+
+8. 🔗 CONNECTION TO BIGGER PICTURE
+
+Everything we've learned now fits together.
+
+Database
+      ↓
+DBMS
+      ↓
+RDBMS
+      ↓
+Schema
+      ↓
+DDL
+      ↓
+Tables
+      ↓
+DML
+      ↓
+Data
+
+Soon you'll combine DML with:
+
+Constraints
+Keys
+Joins
+Aggregations
+
+to build real applications.
+
+🛠️ PROJECT TIP
+
+Let's populate our bookstore.
+
+INSERT INTO Books
+VALUES
+(101,'DBMS',499.99);
+
+INSERT INTO Books
+VALUES
+(102,'Java',599.99);
+
+INSERT INTO Books
+VALUES
+(103,'Operating Systems',699.99);
+
+Then:
+
+SELECT * FROM Books;
+
+Later we'll join this table with Customers and Orders.
