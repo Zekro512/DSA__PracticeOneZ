@@ -1,0 +1,631 @@
+Awesome. 🚀
+
+We're now entering what I consider the heart of relational databases.
+
+Up until now, we've created tables and inserted data. But there's a problem:
+
+What's stopping someone from inserting garbage data?
+
+Nothing.
+
+That's exactly why Constraints were invented.
+
+🚀 PHASE 1 → Topic 8: Constraints in MySQL
+
+This is one of the highest-frequency interview topics.
+
+Almost every SQL interview—from internships to product companies—asks about:
+
+PRIMARY KEY
+FOREIGN KEY
+UNIQUE
+NOT NULL
+DEFAULT
+CHECK
+
+If you master this topic, you're already ahead of many students.
+
+1. 🔍 WHAT ARE CONSTRAINTS?
+Real-World Analogy First
+
+Imagine your college admission form.
+
+It asks:
+
+Student Name: __________
+
+Can you leave it empty?
+
+❌ No.
+
+It asks:
+
+Roll Number
+
+Can two students have the same roll number?
+
+❌ No.
+
+It asks:
+
+Age
+
+Can someone enter:
+
+-50
+
+❌ No.
+
+These are rules.
+
+A database also needs rules.
+
+Those rules are called Constraints.
+
+Technical Definition
+
+A Constraint is a rule applied to a table or column that restricts what data can be stored.
+
+Think of it as:
+
+Without Constraints
+
+↓
+
+Anyone can insert anything.
+
+↓
+
+Database becomes garbage.
+
+------------------------------
+
+With Constraints
+
+↓
+
+Only valid data is accepted.
+
+↓
+
+Database stays clean.
+2. 🧠 WHY WERE CONSTRAINTS INTRODUCED?
+
+Suppose we have this table:
+
+CustomerID	Name
+
+Without constraints, someone could insert:
+
+CustomerID	Name
+101	Pranav
+101	Rahul
+
+Now...
+
+Who is Customer 101?
+
+We don't know.
+
+Or:
+
+CustomerID	Name
+NULL	Pranav
+
+No ID.
+
+Impossible to identify the customer.
+
+Or:
+
+Age
+-20
+
+Does that make sense?
+
+No.
+
+Constraints exist because databases must protect themselves from invalid data.
+
+3. 🏗️ HOW DOES IT WORK INTERNALLY?
+
+Suppose we create:
+
+CREATE TABLE Customers(
+
+CustomerID INT PRIMARY KEY,
+
+Name VARCHAR(100) NOT NULL
+
+);
+
+Now someone runs:
+
+INSERT INTO Customers
+VALUES(NULL,'Pranav');
+
+What happens internally?
+
+Step 1
+
+MySQL reads the schema.
+
+It sees:
+
+CustomerID
+
+↓
+
+PRIMARY KEY
+Step 2
+
+PRIMARY KEY rules:
+
+Cannot be NULL
+
+Must be Unique
+Step 3
+
+NULL violates the rule.
+
+Step 4
+
+Database rejects the row.
+
+Nothing is inserted.
+
+This is important:
+
+The DBMS protects the database before the data reaches the table.
+
+4. 💻 TYPES OF CONSTRAINTS
+
+There are six important ones.
+
+We'll learn each.
+
+A. PRIMARY KEY ⭐⭐⭐⭐⭐
+
+Most important constraint.
+
+Rules:
+
+Unique
+Cannot be NULL
+One Primary Key per table
+
+Example:
+
+CREATE TABLE Books(
+
+BookID INT PRIMARY KEY,
+
+BookName VARCHAR(100)
+
+);
+
+Valid:
+
+BookID	Book
+101	DBMS
+102	Java
+
+Invalid:
+
+BookID	Book
+101	OS
+
+Duplicate.
+
+Rejected.
+
+Real World
+
+Think:
+
+Aadhaar Number
+
+Passport Number
+
+Student Roll Number
+
+All must be unique.
+
+B. NOT NULL ⭐⭐⭐⭐
+
+Means:
+
+This field is mandatory.
+
+Example:
+
+Name VARCHAR(100) NOT NULL
+
+Now:
+
+INSERT INTO Customer
+VALUES(101,NULL);
+
+Rejected.
+
+Real Example
+
+You cannot register on Amazon without:
+
+Name
+Password
+Email
+
+Those fields are usually NOT NULL.
+
+C. UNIQUE ⭐⭐⭐⭐
+
+Rules:
+
+No duplicate values.
+
+Unlike PRIMARY KEY:
+
+NULL is usually allowed (implementation details vary by database).
+
+Example:
+
+Email VARCHAR(100) UNIQUE
+
+Now:
+
+abc@gmail.com
+
+Cannot appear twice.
+
+Question:
+
+Should two customers have the same email?
+
+Usually:
+
+No.
+
+D. DEFAULT ⭐⭐⭐
+
+Suppose:
+
+Every new customer starts with:
+
+0 Loyalty Points
+
+Instead of inserting 0 every time:
+
+LoyaltyPoints INT DEFAULT 0
+
+Now:
+
+INSERT INTO Customer(...);
+
+Automatically:
+
+LoyaltyPoints = 0
+E. CHECK ⭐⭐⭐
+
+Restricts allowed values.
+
+Example:
+
+Age INT CHECK(Age>=18)
+
+Now:
+
+Age=-5
+
+Rejected.
+
+Another:
+
+Rating DECIMAL(2,1)
+
+CHECK(Rating BETWEEN 0 AND 5)
+
+Rating:
+
+6.7
+
+Rejected.
+
+F. FOREIGN KEY ⭐⭐⭐⭐⭐
+
+Don't worry if this feels difficult.
+
+We'll spend an entire topic on relationships.
+
+Suppose:
+
+Customers
+
+CustomerID
+101
+102
+
+Orders
+
+OrderID	CustomerID
+5001	101
+
+Notice:
+
+CustomerID connects both tables.
+
+That connection is called:
+
+Foreign Key
+
+It ensures:
+
+Orders cannot exist for customers who don't exist.
+
+5. 📍 WHERE TO USE THEM?
+Constraint	Use For
+PRIMARY KEY	IDs
+NOT NULL	Mandatory fields
+UNIQUE	Email, Username
+DEFAULT	Default values
+CHECK	Validation
+FOREIGN KEY	Relationships
+6. ⚡ BEST PRACTICES
+Rule 1
+
+Every table should have a Primary Key.
+
+Almost always.
+
+Rule 2
+
+Email should usually be UNIQUE.
+
+Rule 3
+
+Never use Name as Primary Key.
+
+Why?
+
+Two people can have:
+
+Rahul Sharma
+Rule 4
+
+Use CHECK for business rules.
+
+Example:
+
+Salary > 0
+
+Age >= 18
+
+Rating <= 5
+7. 🎯 INTERVIEW ANGLE
+⭐ Most Asked Question
+
+Difference between:
+
+PRIMARY KEY
+
+vs
+
+UNIQUE
+
+Good Answer:
+
+PRIMARY KEY	UNIQUE
+Only one per table	Many allowed
+Cannot be NULL	NULL usually allowed
+Uniquely identifies row	Ensures unique values
+⭐ Trap Question
+
+Can a table exist without a Primary Key?
+
+Answer:
+
+Yes.
+
+Technically.
+
+Should it?
+
+Almost never.
+
+⭐ Another Favorite
+
+Difference between:
+
+NOT NULL
+
+and
+
+PRIMARY KEY
+
+Answer:
+
+PRIMARY KEY automatically implies:
+
+NOT NULL
+
++
+
+UNIQUE
+8. 🔗 CONNECTION TO BIGGER PICTURE
+
+Look at our journey:
+
+Database
+
+↓
+
+DBMS
+
+↓
+
+RDBMS
+
+↓
+
+Schema
+
+↓
+
+DDL
+
+↓
+
+DML
+
+↓
+
+Constraints
+
+↓
+
+Relationships
+
+↓
+
+Joins
+
+↓
+
+Normalization
+
+Notice something?
+
+Relationships become much stronger because of Foreign Keys.
+
+We'll study that next.
+
+🛠️ PROJECT TIP
+
+Let's improve our Customers table.
+
+CREATE TABLE Customers(
+
+CustomerID INT PRIMARY KEY,
+
+Name VARCHAR(100) NOT NULL,
+
+Email VARCHAR(255) UNIQUE,
+
+Phone VARCHAR(15) UNIQUE,
+
+City VARCHAR(100),
+
+LoyaltyPoints INT DEFAULT 0
+
+);
+
+Now our database protects itself.
+
+🧪 Practice Questions
+🟢 Easy
+
+Explain the difference between:
+
+PRIMARY KEY
+UNIQUE
+🟡 Medium
+
+Design constraints for:
+
+Books
+
+BookID
+
+BookName
+
+Price
+
+Rating
+
+ISBN
+
+Which constraints would you apply?
+
+Why?
+
+🔴 Hard
+
+Suppose someone executes:
+
+INSERT INTO Customers
+
+VALUES(
+
+101,
+
+'Pranav',
+
+'pranav@gmail.com'
+
+);
+
+Then again:
+
+INSERT INTO Customers
+
+VALUES(
+
+101,
+
+'Rahul',
+
+'rahul@gmail.com'
+
+);
+
+If CustomerID is a PRIMARY KEY:
+
+What happens internally?
+Why?
+What error would the DBMS raise conceptually?
+🚀 Mini Challenge
+
+Design the Orders table with appropriate constraints.
+
+Columns:
+
+OrderID
+CustomerID
+OrderDate
+TotalAmount
+Status
+
+Think about:
+
+Which field should be PRIMARY KEY?
+Which should be NOT NULL?
+Should any field have DEFAULT?
+Should TotalAmount have CHECK?
+Should CustomerID reference another table?
+
+Don't worry about exact SQL syntax yet. Focus on the reasoning.
+
+✅ Check Your Understanding
+
+A junior developer says:
+
+"PRIMARY KEY and UNIQUE are basically the same thing."
+
+Do you agree?
+
+If yes, explain why.
+
+If no, explain the differences with real examples.
+
+🎯 New Rule From This Topic Onward
+
+From now on, I want you to answer every constraint question by first asking yourself:
+
+Can this value ever be empty? → NOT NULL
+Must this value be unique? → UNIQUE
+Does this identify the row? → PRIMARY KEY
+Should it have a starting value? → DEFAULT
+Does it have a valid range? → CHECK
+Does it belong to another table? → FOREIGN KEY
+
+If you build this habit now, designing database schemas later will feel almost automatic.
