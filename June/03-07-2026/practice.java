@@ -19,3 +19,23 @@ public class Main {
     }
 
 }
+
+Outer Loop (Rows)
+
+i = 1
+    Inner Loop
+    j = 1
+    j = 2
+    j = 3
+    j = 4
+    j = 5
+
+i = 2
+    j = 1
+    j = 2
+    j = 3
+    j = 4
+    j = 5
+
+i = 3
+    ...
