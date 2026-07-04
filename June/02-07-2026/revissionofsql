@@ -629,3 +629,4 @@ Does it have a valid range? → CHECK
 Does it belong to another table? → FOREIGN KEY
 
 If you build this habit now, designing database schemas later will feel almost automatic.
+revision of this concept again with optimized ai approach
