@@ -1,0 +1,145 @@
+## Introduction
+
+Before we start learning HTML, CSS, and JavaScript, we need to set up our development environment.
+
+A good setup helps us:
+
+- Write code efficiently
+- Run projects easily
+- Debug errors quickly
+- Organize files properly
+- Follow industry standards
+
+By the end of this module, every student should have:
+
+- VS Code installed
+- Required extensions installed
+- Browser Developer Tools knowledge
+- Live Server configured
+- Proper project structure understanding
+- GitHub account ready
+- Notion workspace ready
+# Topic 0 - Browser Installation
+
+You can use any browser but the best ones perticularly for web develepment would be 
+
+1. Google Chrome
+
+Installation page
+
+https://www.google.com/chrome/
+
+2. Mozilla Firefox
+
+Installation page
+
+https://www.firefox.com/en-GB/landing/get/
+
+# Topic 1 — VS Code Installation
+
+## What is VS Code?
+
+VS Code (Visual Studio Code) is a free code editor developed by Microsoft.
+
+It is one of the most popular editors used by professional developers.
+
+Features:
+
+- Fast and lightweight
+- Supports many programming languages
+- Large extension marketplace
+- Built-in terminal
+- Git integration
+- Easy debugging
+
+## Download VS Code
+
+Official Website:
+
+https://code.visualstudio.com
+
+Steps:
+
+1. Open the website.
+2. Download VS Code for your operating system.
+3. Install using default settings.
+4. Launch VS Code.
+
+## Important VS Code Areas
+
+### Explorer
+
+Used to view project files and folders.
+
+Shortcut:
+
+```
+Ctrl + Shift + E
+```
+
+### Search
+
+Search text across files.
+
+Shortcut:
+
+```
+Ctrl + Shift + F
+```
+
+### Source Control
+
+Used for Git and GitHub.
+
+Shortcut:
+
+```
+Ctrl + Shift + G
+```
+
+### Extensions
+
+Install useful extensions.
+
+Shortcut:
+
+```
+Ctrl + Shift + X
+```
+
+### Terminal
+
+Run commands directly inside VS Code.
+
+Shortcut:
+
+```
+Ctrl + `
+```
+
+---
+
+# Topic 2 — Extensions & Productivity Tools
+
+## Why Use Extensions?
+
+Extensions add extra functionality to VS Code.
+
+They improve:
+
+- Productivity
+- Code readability
+- Development speed
+- Debugging experience
+
+## Extension 1 — Live Server
+
+Purpose:
+
+Runs HTML projects instantly in the browser.
+
+Extension Name:
+
+```
+Live Server
+```
