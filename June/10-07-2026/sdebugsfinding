@@ -1,0 +1,21 @@
+# Bug 001
+
+Date
+
+10 July
+
+Problem
+
+Spring Boot application failed to start.
+
+Reason
+
+Database URL was incorrect.
+
+Solution
+
+Updated application.properties.
+
+Lesson
+
+Always verify database connection before debugging Java code.
