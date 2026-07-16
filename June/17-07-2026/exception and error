@@ -1,0 +1,150 @@
+Imagine You're Riding a Bicycle 🚲
+
+You're riding your bicycle to school.
+
+Two different things can happen.
+
+Situation 1: The chain comes off.
+
+You stop, fix the chain, and continue riding.
+
+This is an Exception.
+
+Situation 2: The whole bridge collapses.
+
+No matter how skilled you are, you cannot continue riding.
+
+This is an Error.
+
+In Java
+Exception
+
+An Exception is a problem that happens while the program is running, but the program can recover from it if you handle it.
+
+Example:
+
+int a = 10;
+int b = 0;
+
+System.out.println(a / b);
+
+Output:
+
+ArithmeticException: / by zero
+
+You can handle it:
+
+try {
+    System.out.println(a / b);
+} catch (ArithmeticException e) {
+    System.out.println("Cannot divide by zero.");
+}
+
+Output:
+
+Cannot divide by zero.
+
+The program continues running.
+
+Error
+
+An Error is a serious problem.
+
+Usually, Java itself cannot recover, and programmers generally should not try to handle it.
+
+Example:
+
+public class Main {
+    public static void main(String[] args) {
+        main(args);
+    }
+}
+
+Output:
+
+StackOverflowError
+
+The program crashes because it keeps calling itself until the call stack is full.
+
+Real-Life Example
+Situation	Java
+Forgot your house key	Exception
+Earthquake destroyed the house	Error
+
+One is recoverable.
+
+The other is catastrophic.
+
+Common Exceptions
+ArithmeticException
+
+Divide by zero.
+
+NullPointerException
+
+Using an object that is null.
+
+ArrayIndexOutOfBoundsException
+
+Accessing an invalid array index.
+
+FileNotFoundException
+
+Trying to open a file that doesn't exist.
+
+These can often be handled using try-catch.
+
+Common Errors
+StackOverflowError
+
+Too much recursion.
+
+OutOfMemoryError
+
+The JVM runs out of memory.
+
+VirtualMachineError
+
+A serious problem inside the JVM.
+
+These are generally not meant to be handled in normal application code.
+
+Key Differences
+Exception	Error
+Recoverable	Usually not recoverable
+Can be handled with try-catch	Generally should not be handled
+Caused by problems in the program or external conditions	Caused by serious JVM or system failures
+Programmer can often fix or anticipate them	Usually require fixing the program, JVM, or system resources
+Examples: IOException, ArithmeticException	Examples: OutOfMemoryError, StackOverflowError
+Easy Trick to Remember 🎯
+
+Exception = "Expected problem" (you can prepare for it)
+
+Example:
+
+File missing
+Wrong user input
+Divide by zero
+
+Error = "Engine failure" (the program itself is in serious trouble)
+
+Example:
+
+JVM runs out of memory
+Stack overflows
+Internal JVM failure
+Interview Answer (30 seconds)
+
+Exception is a condition that occurs during program execution which can usually be handled, allowing the program to continue running. Examples include ArithmeticException and IOException.
+Error represents a serious problem, typically related to the JVM or system resources, from which an application is generally not expected to recover. Examples include OutOfMemoryError and StackOverflowError.
+
+Quick Check (answer without running the code)
+
+What will happen here?
+
+String s = null;
+System.out.println(s.length());
+Compile-time error
+Exception
+Error
+Normal output
